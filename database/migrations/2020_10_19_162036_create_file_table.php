@@ -27,6 +27,10 @@ class CreateFileTable extends Migration
             $table->string('url', 350)->nullable();
             $table->json('metadata')->nullable();
             $table->bigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')
+                ->on('users')
+                ->references('id');
         });
     }
 

@@ -18,4 +18,5 @@ Route::prefix('v1')->group(function () {
     include __DIR__.'/api/V1/users.php';
     include __DIR__.'/api/V1/file.php';
     include __DIR__.'/api/V1/auth.php';
+    include __DIR__.'/api/V1/locale.php';
 });

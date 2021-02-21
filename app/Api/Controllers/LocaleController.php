@@ -65,6 +65,12 @@ class LocaleController extends Controller
         return LocaleResource::make($user);
     }
 
+    /**
+     * @param UpdateLocaleRequest $request
+     * @param $id
+     * @return LocaleResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function update(UpdateLocaleRequest $request, $id)
     {
         if (!$locale = $this->localeRepository->find($id)) {
@@ -74,6 +80,7 @@ class LocaleController extends Controller
         $this->authorize('ownResource', $locale);
 
         $bag = LocaleBag::fromRequest($request);
+
         return LocaleResource::make($this->updateLocaleAction->execute($bag, $id));
     }
 }
