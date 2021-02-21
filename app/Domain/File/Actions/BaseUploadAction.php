@@ -133,7 +133,7 @@ class BaseUploadAction
     protected function hydrate($uploadData)
     {
         return [
-            'application' => 'api-docfacil',
+            'application' => env('APP_NAME'),
             'name' => $uploadData['name'],
             'hash_name' => $uploadData['hash_name'],
             'path' => $uploadData['path'],
@@ -149,9 +149,6 @@ class BaseUploadAction
     {
         $data = $fileBag->attributes();
 
-        if (!$data['user_id'] && auth()->user()->hasRole('sa')) {
-            $data['user_id'] = auth()->user()->getAuthIdentifier();
-        }
 
         $dataToUpload = [
             'file' => $data['file'],
@@ -163,9 +160,10 @@ class BaseUploadAction
         $dataHydrate = $this->hydrate($uploadData);
 
         $dataHydrate['type'] = $data['type'];
-        $dataHydrate['user_id'] = $data['user_id'];
+        $dataHydrate['user_id'] = auth()->user()->getAuthIdentifier();
+        $dataHydrate['locale_id'] = $data['locale_id'];
 
-        if ($data['type'] == \Domain\File\Models\File::TYPE_PROFILE_PICTURE) {
+        if ($data['type'] == \Domain\File\Models\File::TYPE_PROFILE) {
             //$this->deleteFileAction->deleteProfilePictures($data['user_id']);
         }
 
@@ -176,6 +174,6 @@ class BaseUploadAction
     {
         return ($name) ?
             preg_replace('/[^A-Za-z0-9\.]/i', ' ', $name) :
-            'doc-facil';
+            env('APP_NAME');
     }
 }

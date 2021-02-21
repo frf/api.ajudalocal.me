@@ -11,7 +11,7 @@ class File extends Model
 
     protected $guarded = [];
 
-    public const TYPE_DOC = 'doc';
-    public const TYPE_PROFILE_PICTURE = 'profile_picture';
+    public const TYPE_LOCALE = 'locale';
+    public const TYPE_PROFILE = 'profile';
 
 }

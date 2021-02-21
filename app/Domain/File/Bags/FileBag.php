@@ -36,6 +36,12 @@ class FileBag
         if (!isset($data['name'])) {
             $data['name'] = null;
         }
+        if (!isset($data['user_id'])) {
+            $data['user_id'] = null;
+        }
+        if (!isset($data['locale_id'])) {
+            $data['locale_id'] = null;
+        }
 
         return new self($data);
     }

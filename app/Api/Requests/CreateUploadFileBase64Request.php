@@ -37,12 +37,13 @@ class CreateUploadFileBase64Request extends FormRequest
             'type' => [
                 'required',
                 Rule::in([
-                    File::TYPE_DOC,
-                    File::TYPE_PROFILE_PICTURE,
+                    File::TYPE_LOCALE,
+                    File::TYPE_PROFILE,
                 ])
             ],
             'name' => 'sometimes',
             'user_id' => 'sometimes|exists:users,id',
+            'locale_id' => 'required|exists:locales,id',
             'metadata' => 'sometimes|array'
         ];
     }
