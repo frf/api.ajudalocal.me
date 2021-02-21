@@ -136,7 +136,7 @@ class AuthUserAction
     {
         $privateKey = new CryptKey(Passport::keyPath('oauth-private.key'));
 
-        $client = new Client($clientId, self::CLIENT_AUTH, null);
+        $client = new Client($clientId, env('CLIENT_AUTH'), null);
         $accessToken = new AccessToken($user->getKey(), $scopes, $client);
         $accessToken->setPrivateKey($privateKey);
         $accessToken->setIdentifier($this->generateUniqueIdentifier(40));
