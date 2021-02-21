@@ -26,7 +26,7 @@ use League\OAuth2\Server\ResponseTypes\BearerTokenResponse;
 class AuthUserAction
 {
     protected UserRepository $userRepository;
-    protected const CLIENT_AUTH = 'api-docfacil';
+
 
     public function __construct(UserRepository $userRepository)
     {
@@ -53,7 +53,7 @@ class AuthUserAction
 
         if (!$client) {
             $client = new \Laravel\Passport\Client([
-                'name' => self::CLIENT_AUTH,
+                'name' => env('CLIENT_AUTH'),
                 'secret' => $this->generateUniqueIdentifier(32),
                 'provider' => 'users',
                 'redirect' => 'http://localhost',
