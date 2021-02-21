@@ -2,9 +2,6 @@
 
 namespace Domain\User\Bags;
 
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Hash;
-
 class UserBag
 {
     private array $attributes;
