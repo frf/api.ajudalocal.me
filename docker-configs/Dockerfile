@@ -6,6 +6,7 @@ RUN apk add \
         --update \
         --no-cache \
         composer \
+        supervisor \
         postgresql-dev \
         zlib-dev \
         libpng \
@@ -49,4 +50,9 @@ RUN apk add \
         libpng-dev \
         libjpeg-turbo-dev
 
+COPY ./supervisor.conf /etc/supervisor.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.conf"]
+
 RUN composer self-update --2
+

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AddJobEvent;
 use App\Console\Commands\FireEvent;
 use App\Console\Commands\SyncWatchCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         FireEvent::class,
-        SyncWatchCommand::class
+        SyncWatchCommand::class,
+        AddJobEvent::class,
     ];
 
     /**
