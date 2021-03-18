@@ -52,7 +52,6 @@ RUN apk add \
 
 COPY ./supervisor.conf /etc/supervisor.conf
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.conf"]
+ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor.conf"]
 
-RUN composer self-update --2
 
