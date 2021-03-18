@@ -23,6 +23,7 @@ class CreateLocaleRequest extends FormRequest
             'latitude' => 'required',
             'longitude' => 'required',
             'instructions' => 'required',
+            'address' => 'required',
         ];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLocaleDetailsTable extends Migration
+class AddLocaleAddressTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddLocaleDetailsTable extends Migration
     public function up()
     {
         Schema::table('locales', function (Blueprint $table) {
-            $table->text('about')->nullable();
-            $table->text('type')->nullable();
-            $table->decimal('latitude', 11, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->text('address')->nullable();
         });
     }
 
@@ -29,10 +26,7 @@ class AddLocaleDetailsTable extends Migration
     public function down()
     {
         Schema::table('locales', function (Blueprint $table) {
-            $table->dropColumn('about');
-            $table->dropColumn('type');
-            $table->dropColumn('longitude');
-            $table->dropColumn('latitude');
+            $table->dropColumn('address');
         });
     }
 }
