@@ -19,5 +19,7 @@ class Locale extends Model
         'longitude',
         'latitude',
         'address',
+        'name_user',
+        'phone_user',
     ];
 }
