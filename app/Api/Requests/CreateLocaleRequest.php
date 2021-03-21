@@ -20,8 +20,8 @@ class CreateLocaleRequest extends FormRequest
     {
         return [
             'name' => 'required|string|between:5,100',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'latitude' => 'sometimes',
+            'longitude' => 'sometimes',
             'instructions' => 'required',
             'address' => 'required',
         ];
