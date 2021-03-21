@@ -18,7 +18,7 @@ class CreateLocaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|between:5,100',
+//            'name' => 'required|string|between:5,100',
             'latitude' => 'sometimes',
             'longitude' => 'sometimes',
             'instructions' => 'required',
