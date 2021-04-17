@@ -22,7 +22,7 @@ class LocaleRepository extends Repository
                 AllowedFilter::partial('name'),
             )
             ->allowedSorts('id', 'name', 'created_at')
-            ->where('status',Locale::STATUS_APPROVED)
+//            ->where('status',Locale::STATUS_APPROVED)
             ->paginate();
     }
 

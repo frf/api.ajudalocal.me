@@ -20,7 +20,7 @@ class CreateLocaleAction
     public function execute(LocaleBag $patientBag)
     {
         $data = $patientBag->attributes();
-        $data['status'] = Locale::STATUS_WAITING_APPROVED;
+        $data['status'] = Locale::STATUS_REGISTRED;
 
         return $this->localeRepository->create($data);
     }
