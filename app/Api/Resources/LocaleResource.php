@@ -14,7 +14,6 @@ class LocaleResource extends JsonResource
             'id' => $this->getKey(),
             'name' => $this->name,
             'about' => $this->about,
-            'type' => $this->type,
             'instructions' => $this->instructions,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,

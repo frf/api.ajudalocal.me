@@ -15,7 +15,7 @@ class AddLocaleDetailsTable extends Migration
     {
         Schema::table('locales', function (Blueprint $table) {
             $table->text('about')->nullable();
-            $table->text('type')->nullable();
+            $table->text('type')->nullable()->comment('pessoas, deficientes, trabalho, material_escolar ....');
             $table->decimal('latitude', 11, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
         });

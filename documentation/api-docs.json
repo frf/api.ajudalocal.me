@@ -1,0 +1,243 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "AjudaLocal App",
+        "contact": "fabio@fabiofarias.com.br",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.ajudalocal.me/v1/",
+            "description": "Api AjudaLocal Beta"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Auth",
+                "description": "Auth ",
+                "operationId": "auth",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register",
+                "description": "Register User ",
+                "operationId": "register",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "requestBody": {
+                    "description": "register user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "User Ajuda Local"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "email@ajudalocal.me"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456"
+                                    },
+                                    "mobile_phone": {
+                                        "type": "string",
+                                        "example": "+5521999990000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/locales": {
+            "get": {
+                "tags": [
+                    "Locale"
+                ],
+                "summary": "List locales",
+                "description": "List locales",
+                "operationId": "locale.index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Locale"
+                ],
+                "summary": "Locale Register",
+                "description": "locales ",
+                "operationId": "locales",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Locale"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "oauth2": {
+                "type": "apiKey",
+                "description": "A short description for security scheme",
+                "name": "Authorization",
+                "in": "header"
+            }
+        },
+        "schemas": {
+            "User": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "email@ajudalocal.me"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123456",
+                        "format": "password"
+                    }
+                },
+                "required": [
+                    "email", "name"
+                ]
+            },
+            "Locale": {
+                "properties": {
+                    "name_user": {
+                        "type": "string",
+                        "example": "Usuario Pedro"
+                    },
+                    "phone_user": {
+                        "type": "string",
+                        "example": "21999992233"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Viaduto parque olimpico"
+                    },
+                    "latitude": {
+                        "type": "string",
+                        "example": "-22.972921"
+                    },
+                    "longitude": {
+                        "type": "string",
+                        "example": "-43.402498"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Av. Embaixador Abelardo Bueno, 4400"
+                    },
+                    "instructions": {
+                        "type": "string",
+                        "example": "Próximo a rua Y, levar comida após as 19:00",
+                        "format": "password"
+                    },
+                    "about": {
+                        "type": "string",
+                        "example": "Pessoas sem teto precisando de ajuda de alimetação",
+                        "format": "password"
+                    }
+                },
+                "required": [
+                    "name", "instructions", "about", "name_user", "phone_user", "latitude", "longitude"
+                ]
+            }
+        }
+    },
+    "security": [
+        {
+            "oauth2": [
+                "read",
+                "write"
+            ]
+        }
+    ]
+}

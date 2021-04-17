@@ -14,7 +14,7 @@ class ChangeLocaleNameTable extends Migration
     public function up()
     {
         Schema::table('locales', function (Blueprint $table) {
-            $table->string('name')->nullable()->change();
+            $table->integer('name')->nullable()->change();
         });
     }
 

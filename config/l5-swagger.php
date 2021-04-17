@@ -12,7 +12,7 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/documentation',
+                'api' => 'api/doc/',
             ],
             'paths' => [
                 /*
@@ -67,7 +67,8 @@ return [
             /*
              * Absolute path to location where parsed annotations will be stored
             */
-            'docs' => storage_path('api-docs'),
+            //'docs' => storage_path('api-docs'),
+            'docs' => base_path('documentation'),
 
             /*
              * Absolute path to directory where to export views
@@ -98,14 +99,14 @@ return [
                 /*
                  * Examples of Security schemes
                 */
-                /*
-                'api_key_security_example' => [ // Unique name of security
+
+                'oauth2' => [ // Unique name of security
                     'type' => 'apiKey', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'A short description for security scheme',
-                    'name' => 'api_key', // The name of the header or query parameter to be used.
+                    'name' => 'Authorization', // The name of the header or query parameter to be used.
                     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
-                'oauth2_security_example' => [ // Unique name of security
+                /*'oauth2_security_example' => [ // Unique name of security
                     'type' => 'oauth2', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'A short description for oauth2 security scheme.',
                     'flow' => 'implicit', // The flow used by the OAuth2 security scheme. Valid values are "implicit", "password", "application" or "accessCode".
@@ -140,14 +141,14 @@ return [
                  * Examples of Securities
                 */
                 [
-                    /*
-                    'oauth2_security_example' => [
+
+                    'oauth2' => [
                         'read',
                         'write'
                     ],
-
-                    'passport' => []
-                    */
+                    /*
+                                        'passport' => []
+                                        */
                 ],
             ],
         ],
@@ -191,8 +192,8 @@ return [
         /*
          * Uncomment to add constants which can be used in annotations
          */
-         'constants' => [
-             'L5_SWAGGER_API_HOST' => env('L5_SWAGGER_API_HOST', 'http://localhost'),
-         ],
+        'constants' => [
+            'L5_SWAGGER_API_HOST' => env('L5_API_HOST', 'http://localhost'),
+        ],
     ],
 ];
