@@ -17,6 +17,7 @@ class LocaleResource extends JsonResource
             'instructions' => $this->instructions,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
+            'address' => $this->address,
         ];
     }
 }
