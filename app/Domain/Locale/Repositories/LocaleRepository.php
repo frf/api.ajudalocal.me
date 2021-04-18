@@ -23,6 +23,8 @@ class LocaleRepository extends Repository
             )
             ->allowedSorts('id', 'name', 'created_at')
 //            ->where('status',Locale::STATUS_APPROVED)
+            ->whereNotNull('latitude')
+            ->whereNotNull('longitude')
             ->paginate();
     }
 
