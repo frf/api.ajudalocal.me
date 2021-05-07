@@ -47,7 +47,7 @@ task('build', function () {
 });
 
 task('supervisor:execute', function () {
-    run('sudo killall supervisord ');
+    run('sudo killall -q supervisord ');
     run('/usr/bin/supervisord -c /var/www/ajudalocal/shared/supervisor.conf ');
 });
 
