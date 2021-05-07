@@ -51,11 +51,11 @@ task('supervisor:execute', function () {
 });
 
 task('supervisor:upload', function() {
-    upload('supervisor.conf', 'shared/supervisor.conf');
+    upload('supervisor.conf', '/var/www/ajudalocal/shared/supervisor.conf');
 });
 
 task('deploy', [
-    'supervisor',
+    'supervisor:upload',
     'deploy:info',
     'deploy:prepare',
     'deploy:lock',
@@ -78,8 +78,7 @@ after('success', 'slack:notify:success');
 before('deploy', 'slack:notify');
 
 after('deploy', 'success');
-after('deploy', 'supervisor:upload');
-after('supervisor:upload', 'supervisor:execute');
+after('deploy', 'supervisor:execute');
 
 after('success', 'slack:notify:success');
 after('deploy:failed', 'deploy:unlock');
