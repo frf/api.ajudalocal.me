@@ -2,6 +2,7 @@
 
 namespace App\Domain\Locale\Actions;
 
+use Carbon\Carbon;
 use Domain\Locale\Models\Locale;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,7 @@ class UpdateAddressLatLongQueueAction
                 ->update([
                     'latitude' => $data['latitude'],
                     'longitude' => $data['longitude'],
+                    'updated_at' => Carbon::now(),
                     'status' => Locale::STATUS_PUBLISHED,
                     'data' => $data['data'],
                 ]);

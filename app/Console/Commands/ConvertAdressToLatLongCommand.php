@@ -38,7 +38,7 @@ class ConvertAdressToLatLongCommand extends Command
         $locale = $localeRepository->oneProcessMap();
 
         if (!$locale) {
-            $this->info('Nao existe local');
+            $this->error('Nao existe local');
             return;
         }
 
@@ -49,33 +49,32 @@ class ConvertAdressToLatLongCommand extends Command
         $response = Http::get($urlGoogleMaps);
 
         if (!$response->successful()) {
-            $this->info('Erro response google');
+            $this->error('Erro response google');
             return;
         }
 
         $json = $response->json();
 
-        dump($json);
-
-
         if (!isset($json['results'][0]['geometry'])) {
+            $this->error('Erro pegar dados google');
             return;
         }
 
         $locations = $json['results'][0]['geometry']['location'];
 
         if (!isset($locations['lat']) && !isset($locations['lng'])) {
+            $this->error('Erro pegar dados google lat long');
             return;
         }
 
         $data = [
-            'id' => 8,
+            'id' => $locale->id,
             'latitude' => $locations['lat'],
             'longitude' => $locations['lng'],
             'data' => $json
         ];
 
         $updateAddressLatLongQueueAction->onQueue('process_address')
-            ->execute($data, 'update_product');
+            ->execute($data);
     }
 }
