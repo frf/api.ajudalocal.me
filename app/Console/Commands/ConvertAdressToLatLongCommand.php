@@ -38,6 +38,7 @@ class ConvertAdressToLatLongCommand extends Command
         $locale = $localeRepository->oneProcessMap();
 
         if (!$locale) {
+            $this->info('Nao existe local');
             return;
         }
 
@@ -48,10 +49,14 @@ class ConvertAdressToLatLongCommand extends Command
         $response = Http::get($urlGoogleMaps);
 
         if (!$response->successful()) {
+            $this->info('Erro response google');
             return;
         }
 
         $json = $response->json();
+
+        dump($json);
+
 
         if (!isset($json['results'][0]['geometry'])) {
             return;
