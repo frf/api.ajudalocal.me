@@ -9,7 +9,7 @@ require 'recipe/slack.php';
 set('application', 'api-ajudalocal');
 
 // Project repository
-    set('repository', 'git@github.com:frf/api.ajudalocal.me.git');
+set('repository', 'git@github.com:frf/api.ajudalocal.me.git');
 
 set('slack_webhook', 'https://hooks.slack.com/services/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');
 set('slack_title', 'Application: {{application}}');
