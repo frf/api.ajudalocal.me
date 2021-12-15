@@ -57,6 +57,8 @@ class ConvertAdressToLatLongCommand extends Command
 
         if (!isset($json['results'][0]['geometry'])) {
             $this->error('Erro pegar dados google');
+            $this->error($json['error_message']);
+            $this->error($json['status']);
             return;
         }
 
@@ -64,6 +66,8 @@ class ConvertAdressToLatLongCommand extends Command
 
         if (!isset($locations['lat']) && !isset($locations['lng'])) {
             $this->error('Erro pegar dados google lat long');
+            $this->error($json['error_message']);
+            $this->error($json['status']);
             return;
         }
 
