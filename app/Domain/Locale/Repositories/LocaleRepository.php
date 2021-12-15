@@ -14,15 +14,27 @@ class LocaleRepository extends Repository
         return Locale::class;
     }
 
-    public function all($columns = array('*'))
+    public function oneAapproved()
     {
         $this->applyCriteria();
         return QueryBuilder::for($this->model)
-            ->allowedFilters(
-                AllowedFilter::partial('name'),
-            )
-            ->allowedSorts('id', 'name', 'created_at')
-//            ->where('status',Locale::STATUS_APPROVED)
+            ->where('status', Locale::STATUS_APPROVED)
+            ->first();
+    }
+
+    public function allAapproved()
+    {
+        $this->applyCriteria();
+        return QueryBuilder::for($this->model)
+            ->where('status', Locale::STATUS_APPROVED)
+            ->paginate();
+    }
+
+    public function allPublished()
+    {
+        $this->applyCriteria();
+        return QueryBuilder::for($this->model)
+            ->where('status', Locale::STATUS_PUBLISHED)
             ->whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->paginate();

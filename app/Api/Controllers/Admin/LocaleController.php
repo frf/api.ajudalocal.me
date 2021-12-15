@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\CreateLocaleRequest;
 use App\Api\Requests\UpdateLocaleRequest;
-use App\Api\Resources\FileResource;
 use App\Api\Resources\LocaleResource;
 use App\Exceptions\ResourceNotFoundException;
 use Domain\Locale\Actions\CreateLocaleAction;
 use Domain\Locale\Actions\UpdateLocaleAction;
 use Domain\Locale\Bags\LocaleBag;
 use Domain\Locale\Repositories\LocaleRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class LocaleController extends Controller
@@ -42,7 +40,7 @@ class LocaleController extends Controller
         $cacheKey = 'locales:index:'.md5($requestString);
 
         return Cache::remember($cacheKey, 8, function () {
-            return LocaleResource::collection($this->localeRepository->allPublished());
+            return LocaleResource::collection($this->localeRepository->all());
         });
     }
 
