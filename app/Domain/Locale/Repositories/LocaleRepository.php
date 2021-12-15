@@ -14,6 +14,15 @@ class LocaleRepository extends Repository
         return Locale::class;
     }
 
+    public function oneProcessMap()
+    {
+        $this->applyCriteria();
+        return QueryBuilder::for($this->model)
+            ->where('status', Locale::STATUS_APPROVED)
+            ->whereNotNull('address')
+            ->whereNotNull('name')
+            ->first();
+    }
     public function oneAapproved()
     {
         $this->applyCriteria();

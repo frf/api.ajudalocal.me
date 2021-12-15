@@ -35,7 +35,7 @@ class ConvertAdressToLatLongCommand extends Command
         LocaleRepository $localeRepository,
         UpdateAddressLatLongQueueAction $updateAddressLatLongQueueAction
     ) {
-        $locale = $localeRepository->oneAapproved();
+        $locale = $localeRepository->oneProcessMap();
 
         if (!$locale) {
             return;
